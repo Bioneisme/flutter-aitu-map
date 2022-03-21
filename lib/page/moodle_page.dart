@@ -10,14 +10,14 @@ class MoodlePage extends StatefulWidget {
 }
 
 class _MoodlePageState extends State<MoodlePage> {
-  late WebViewController _MoodleController;
+  late WebViewController _moodleController;
   double progress = 0;
 
   @override
   Widget build(BuildContext context) => WillPopScope(
         onWillPop: () async {
-          if (await _MoodleController.canGoBack()) {
-            _MoodleController.goBack();
+          if (await _moodleController.canGoBack()) {
+            _moodleController.goBack();
           } else {
             return true;
           }
@@ -30,22 +30,22 @@ class _MoodlePageState extends State<MoodlePage> {
               actions: [
                 IconButton(
                     onPressed: () async {
-                      if (await _MoodleController.canGoBack()) {
-                        _MoodleController.goBack();
+                      if (await _moodleController.canGoBack()) {
+                        _moodleController.goBack();
                       }
                       return;
                     },
                     icon: const Icon(Icons.arrow_back_ios)),
                 IconButton(
                     onPressed: () async {
-                      if (await _MoodleController.canGoForward()) {
-                        _MoodleController.goForward();
+                      if (await _moodleController.canGoForward()) {
+                        _moodleController.goForward();
                       }
                       return;
                     },
                     icon: const Icon(Icons.arrow_forward_ios)),
                 IconButton(
-                    onPressed: () => _MoodleController.reload(),
+                    onPressed: () => _moodleController.reload(),
                     icon: const Icon(Icons.replay)),
               ],
             ),
@@ -60,7 +60,7 @@ class _MoodlePageState extends State<MoodlePage> {
                   initialUrl: 'https://moodle.astanait.edu.kz/',
                   javascriptMode: JavascriptMode.unrestricted,
                   onWebViewCreated: (controller) {
-                    _MoodleController = controller;
+                    _moodleController = controller;
                   },
                   onProgress: (progress) {
                     this.progress = progress / 100;
